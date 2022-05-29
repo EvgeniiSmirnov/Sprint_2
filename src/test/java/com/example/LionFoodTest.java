@@ -13,14 +13,16 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LionFoodTest {
+
     @Mock
     private Feline feline;
 
     @Test
     public void getFoodLionTest() throws Exception {
-        Lion lion = new Lion("Самка", feline);
+        Lion lion = new Lion("Самец", feline);
         List<String> expectedLionFood = Arrays.asList("Животные", "Птицы", "Рыба");
-        Mockito.when(lion.getFood()).thenReturn(expectedLionFood);
-        assertEquals(expectedLionFood, lion.getFood());
+        Mockito.when(feline.getFood("Хищник")).thenReturn(Arrays.asList("Животные", "Птицы", "Рыба"));
+        List<String> actualLionFood = lion.getFood();
+        assertEquals(expectedLionFood, actualLionFood);
     }
 }
